@@ -1,0 +1,38 @@
+version: '2'
+
+services:
+    db:
+      image: mysql:5.7
+      environment:
+        MYSQL_ROOT_PASSWORD: wordpress
+        MYSQL_DATABASE: wordpress
+        MYSQL_USER: wordpress
+        MYSQL_PASSWORD: wordpress
+
+    wordpress:
+      image: wordpress:latest
+      ports:
+        - "8000:80"
+      environment:
+        WORDPRESS_DB_HOST: db:3306
+        WORDPRESS_DB_PASSWORD: wordpress
+
+    phpmyadmin:
+      image: phpmyadmin/phpmyadmin:latest
+      ports:
+         - "8001:80"
+      links:
+        - db
+      environment:
+        PMA_HOST: db
+        PMA_PORT: 3306
+
+    mail:
+      image: catatnight/postfix
+      environment:
+        maildomain: setbeat.com
+
+    mailcatcher:
+      image: tophfr/mailcatcher:0.6.5
+      ports:
+        - "8002:80"
