@@ -26,13 +26,3 @@ services:
       environment:
         PMA_HOST: db
         PMA_PORT: 3306
-
-    mail:
-      image: catatnight/postfix
-      environment:
-        maildomain: setbeat.com
-
-    mailcatcher:
-      image: tophfr/mailcatcher:0.6.5
-      ports:
-        - "8002:80"
