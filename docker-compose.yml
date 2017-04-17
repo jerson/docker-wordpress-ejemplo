@@ -3,6 +3,8 @@ version: '2'
 services:
     db:
       image: mysql:5.7
+      volumes:
+        - db_data:/var/lib/mysql
       environment:
         MYSQL_ROOT_PASSWORD: wordpress
         MYSQL_DATABASE: wordpress
@@ -30,3 +32,5 @@ services:
       environment:
         PMA_HOST: db
         PMA_PORT: 3306
+volumes:
+    db_data:
