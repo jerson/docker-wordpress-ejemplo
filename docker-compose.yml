@@ -14,6 +14,8 @@ services:
     wordpress:
       depends_on:
         - db
+      links:
+        - db
       image: wordpress:latest
       ports:
         - "8000:80"
